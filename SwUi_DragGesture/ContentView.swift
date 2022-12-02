@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @State var viewState = CGSize.zero
-
+    let viewSize: CGFloat = 200
+    let cornerFactor: CGFloat = 4
+    
     var body: some View {
         ZStack {
             offsetDisplay
@@ -39,9 +41,9 @@ extension ContentView {
 
 extension ContentView {
     var ball: some View {
-        RoundedRectangle(cornerRadius: 40)
+        RoundedRectangle(cornerRadius: viewSize / cornerFactor)
             .fill(viewState.height < 0 ? .blue : .red)
-            .frame(width: 80, height: 80)
+            .frame(width: viewSize, height: viewSize)
             .offset(x: viewState.width, y: viewState.height)
             .gesture(
                 DragGesture().onChanged { value in
